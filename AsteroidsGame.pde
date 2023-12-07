@@ -25,10 +25,10 @@ public void draw()
       star[i].show();
     }
 
-  for(int i = 0; i < roids.size(); i++)
+  for(int i = 0; i < fallingrocks.size(); i++)
   {
-    roids.get(i).show();
-    roids.get(i).move();
+    fallingrocks.get(i).show();
+    fallingrocks.get(i).move();
   }
 
  
