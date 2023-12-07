@@ -34,10 +34,6 @@ public void draw()
  
 public void keyPressed()
 {
-  if (key == ' ')
-  {
-    bob.add(new Bullet(ship));
-  }
   if (key == 'w')
   {
     ship.accelerate(.2);
@@ -54,7 +50,7 @@ public void keyPressed()
   {
     ship.rotate(12);
   }
-  if (key == 'h')
+  if (key == ' ')
   {
     ship.setX((int)(Math.random()*800));
     ship.setY((int)(Math.random()*800));
