@@ -19,7 +19,9 @@ public void setup()
 public void draw() 
 {
   background(0);
-  
+  ship.show();
+  ship.move();
+
   for(int i = 0; i < star.length; i++)
     {
       star[i].show();
