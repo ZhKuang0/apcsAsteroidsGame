@@ -6,9 +6,9 @@ public void setup()
   size(1000,1000);
   ship = new SpaceShip();
   star = new Stars[100];
-  for(int i = 0; i < star.length(); i++)
+  for(int i = 0; i < star.length; i++)
     {
-      star[i] = new Stars();
+      star[i] = new Stars;
     }
     for(int i = 0; i < 20; i++)
     {
@@ -20,7 +20,7 @@ public void draw()
 {
   background(0);
   
-  for(int i = 0; i < star.length(); i++)
+  for(int i = 0; i < star.length; i++)
     {
       star[i].show();
     }
@@ -44,11 +44,11 @@ public void keyPressed()
   }
   if (key == 'a')
   {
-    ship.rotate(-12);
+    ship.turn(-12);
   }
   if (key == 'd')
   {
-    ship.rotate(12);
+    ship.turn(12);
   }
   if (key == ' ')
   {
