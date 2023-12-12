@@ -30,7 +30,7 @@ public void draw()
     fallingrocks.get(i).show();
     fallingrocks.get(i).move();
   }
-
+}
  
 public void keyPressed()
 {
