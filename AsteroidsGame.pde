@@ -1,6 +1,7 @@
 SpaceShip ship;
 Stars [] star;
 ArrayList <Asteroid> fallingrocks = new ArrayList <Asteroid>();
+private boolean shipacc, shipdcc;
 public void setup() 
 {
   size(1000,1000);
@@ -8,7 +9,7 @@ public void setup()
   star = new Stars[100];
   for(int i = 0; i < star.length; i++)
     {
-      star[i] = new Stars;
+      star[i] = new Stars();
     }
     for(int i = 0; i < 20; i++)
     {
@@ -32,17 +33,21 @@ public void draw()
     fallingrocks.get(i).show();
     fallingrocks.get(i).move();
   }
+  if (shipacc == true) 
+  ship.accelerate(0.2);
+  if (shipdcc == true)
+  ship.accelerate(-0.2);
 }
  
 public void keyPressed()
 {
-  if (key == 'w')
-  {
-    ship.accelerate(.2);
-  }
-  if (key == 's')
-  {
-    ship.accelerate(-.2);
+  switch (key) {
+    case ('w'):
+    shipacc = true;
+    break;
+    case ('s'):
+    shipdcc = true;
+    break;
   }
   if (key == 'a')
   {
@@ -59,6 +64,16 @@ public void keyPressed()
     ship.setDirectionX(0);
     ship.setDirectionY(0);
     ship.setPointDirection((int)(Math.random()*360));
+  }
+}
+public void keyReleased() {
+  switch (key) {
+    case ('w'):
+    shipacc = false;
+    break;
+    case ('s'):
+    shipdcc = false;
+    break;
   }
 }
 class Asteroid extends Floater
