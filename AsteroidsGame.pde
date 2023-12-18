@@ -1,25 +1,24 @@
 SpaceShip ship;
 Stars [] star;
 ArrayList <Asteroid> fallingrocks = new ArrayList <Asteroid>();
-private boolean shipacc, shipdcc;
+private boolean shipacc, shipbcc;
 public void setup() 
 {
-  size(1000,1000);
+  size(900, 900);
   ship = new SpaceShip();
   star = new Stars[100];
   for(int i = 0; i < star.length; i++)
     {
       star[i] = new Stars();
     }
-    for(int i = 0; i < 20; i++)
-    {
+    for(int i = 0; i < 50; i++)
       fallingrocks.add(new Asteroid());
-    }
 
 }
 public void draw() 
 {
   background(0);
+  debuginfo();
   ship.show();
   ship.move();
 
@@ -35,10 +34,23 @@ public void draw()
   }
   if (shipacc == true) 
   ship.accelerate(0.2);
-  if (shipdcc == true)
+  if (shipbcc == true)
   ship.accelerate(-0.2);
+  mouseToDirection(mouseX, mouseY);
 }
- 
+public void debuginfo() {
+  fill(#ffb7b7);
+  text(key , 40,50,50);
+  text(mouseX ,20, 50,50);
+  text(mouseY , 50,50);
+  text(ship.getX(),100, 50,50);
+  text(ship.getY(),125, 50,50);
+  text((float)ship.getPointDirection(), 200, 50, 50);
+  text("help",20,25);
+}
+public void mouseToDirection(int x, int y) { 
+     ship.setPointDirection(60*atan2(y-ship.getY(),x-ship.getX()));
+}
 public void keyPressed()
 {
   switch (key) {
@@ -46,19 +58,15 @@ public void keyPressed()
     shipacc = true;
     break;
     case ('s'):
-    shipdcc = true;
+    shipbcc = true;
     break;
-  }
-  if (key == 'a')
-  {
-    ship.turn(-12);
-  }
-  if (key == 'd')
-  {
+    case ('d'):
     ship.turn(12);
-  }
-  if (key == ' ')
-  {
+    break;
+    case ('a'):
+    ship.turn(-12);
+    break;
+    case (' '): 
     ship.setX((int)(Math.random()*800));
     ship.setY((int)(Math.random()*800));
     ship.setDirectionX(0);
@@ -72,14 +80,14 @@ public void keyReleased() {
     shipacc = false;
     break;
     case ('s'):
-    shipdcc = false;
+    shipbcc = false;
     break;
   }
 }
 class Asteroid extends Floater
 {
     
-    private int aRotate;
+      private int aRotate;
     public void setX(int x) {myCenterX = x;} 
     public int getX() {return (int)myCenterX;}   
     public void setY(int y) {myCenterY = y;}   
