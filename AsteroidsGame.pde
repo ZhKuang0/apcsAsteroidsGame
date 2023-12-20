@@ -1,7 +1,7 @@
 SpaceShip ship;
 Stars [] star;
 ArrayList <Asteroid> fallingrocks = new ArrayList <Asteroid>();
-ArrayList <Bullets> bullets = new ArrayList <Bullets> ();
+ArrayList <Bullet> pewpew = new ArrayList <Bullet> ();
 private boolean shipacc, shipbcc;
 public void setup() 
 {
@@ -33,9 +33,9 @@ public void draw()
     fallingrocks.get(i).show();
     fallingrocks.get(i).move();
   }
-  for (int i = 0; i < bullets.size(); i ++) {
-      bullets.get(i).show();
-      bullets.get(i).move();
+  for (int i = 0; i < pewpew.size(); i ++) {
+      pewpew.get(i).show();
+      pewpew.get(i).move();
     }
     for (int i = 0; i < fallingrocks.size(); i ++) {
       if (dist(ship.getX(), ship.getY(), fallingrocks.get(i).getX(), fallingrocks.get(i).getY()) < 50) {
@@ -57,7 +57,7 @@ public void debuginfo() {
   text(ship.getX(),100, 50,50);
   text(ship.getY(),125, 50,50);
   text((float)ship.getPointDirection(), 200, 50, 50);
-  text("help",20,25);
+  text("pew pew",20,25);
 }
 public void mouseToDirection(int x, int y) { 
      ship.setPointDirection(60*atan2(y-ship.getY(),x-ship.getX()));
@@ -72,7 +72,7 @@ public void keyPressed()
     shipbcc = true;
     break;
     case ('d'):
-    bullets.add(new Bullets(ship));
+    pewpew.add(new Bullet(ship));
     break;
     case ('a'):
     ship.turn(-12);
