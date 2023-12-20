@@ -1,6 +1,7 @@
 SpaceShip ship;
 Stars [] star;
 ArrayList <Asteroid> fallingrocks = new ArrayList <Asteroid>();
+ArrayList <Bullets> bullets = new ArrayList <Bullets> ();
 private boolean shipacc, shipbcc;
 public void setup() 
 {
@@ -32,6 +33,16 @@ public void draw()
     fallingrocks.get(i).show();
     fallingrocks.get(i).move();
   }
+  for (int i = 0; i < bullets.size(); i ++) {
+      bullets.get(i).show();
+      bullets.get(i).move();
+    }
+    for (int i = 0; i < fallingrocks.size(); i ++) {
+      if (dist(ship.getX(), ship.getY(), fallingrocks.get(i).getX(), fallingrocks.get(i).getY()) < 50) {
+        fallingrocks.remove(i);
+      }
+    }
+
   if (shipacc == true) 
   ship.accelerate(0.2);
   if (shipbcc == true)
@@ -61,7 +72,7 @@ public void keyPressed()
     shipbcc = true;
     break;
     case ('d'):
-    ship.turn(12);
+    bullets.add(new Bullets(ship));
     break;
     case ('a'):
     ship.turn(-12);
