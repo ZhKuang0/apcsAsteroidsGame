@@ -32,15 +32,12 @@ public void draw()
   {
     fallingrocks.get(i).show();
     fallingrocks.get(i).move();
+    if (dist(ship.getX(), ship.getY(), fallingrocks.get(i).getX(), fallingrocks.get(i).getY()) < 20)
+    fallingrocks.remove(i);
   }
   for (int i = 0; i < pewpew.size(); i ++) {
       pewpew.get(i).show();
       pewpew.get(i).move();
-    }
-    for (int i = 0; i < fallingrocks.size(); i ++) {
-      if (dist(ship.getX(), ship.getY(), fallingrocks.get(i).getX(), fallingrocks.get(i).getY()) < 50) {
-        fallingrocks.remove(i);
-      }
     }
 
   if (shipacc == true) 
@@ -74,9 +71,6 @@ public void keyPressed()
     case ('d'):
     pewpew.add(new Bullet(ship));
     break;
-    case ('a'):
-    ship.turn(-12);
-    break;
     case (' '): 
     ship.setX((int)(Math.random()*800));
     ship.setY((int)(Math.random()*800));
@@ -107,7 +101,7 @@ class Asteroid extends Floater
     public double getDirectionX() {return myDirectionX;}  
     public void setDirectionY(double y) {myDirectionY = y;}
     public double getDirectionY() {return myDirectionY;}
-    public void setPointDirection(int degrees) {myPointDirection = degrees;}
+    public void setPointDirection(double degrees) {myPointDirection = degrees;}
     public double getPointDirection() {return myPointDirection;}
 
     public Asteroid()
