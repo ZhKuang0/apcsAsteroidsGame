@@ -12,7 +12,7 @@ public void setup()
     {
       star[i] = new Stars();
     }
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < 25; i++)
       fallingrocks.add(new Asteroid());
 
 }
@@ -34,6 +34,11 @@ public void draw()
     fallingrocks.get(i).move();
     if (dist(ship.getX(), ship.getY(), fallingrocks.get(i).getX(), fallingrocks.get(i).getY()) < 20)
     fallingrocks.remove(i);
+    for (int ii = 0; ii < pewpew.size(); ii++)
+    if (dist(pewpew.get(ii).getX(),pewpew.get(ii).getY(),fallingrocks.get(i).getX(), fallingrocks.get(i).getY()) < 20) {
+    pewpew.remove(ii);
+    fallingrocks.remove(i);
+  }
   }
   for (int i = 0; i < pewpew.size(); i ++) {
       pewpew.get(i).show();
